@@ -12,13 +12,11 @@ public class Passenger
     [Display(Name ="Date of birth")]
     [DataType(DataType.Date)] // calender
     public DateTime BirthDate{ get; set; }
-    #nullable disable
+  
     [Key]
     [StringLength(7)]
     public string PassportNumber { get; set; }
-    [MinLength(3,ErrorMessage ="min lenght is 3 !"),MaxLength(25,ErrorMessage ="max lenght must be 25!")]
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public FullName FullName { get; set; } // type complexe
     public string TelNumber { get; set; }
     [EmailAddress]
     //[DataType(DataType.EmailAddress)]
