@@ -22,6 +22,7 @@ public class AMContext : DbContext
         optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;
               Initial Catalog=AirportManagementDB;Integrated Security=true;
               MultipleActiveResultSets=true");
+        optionsBuilder.UseLazyLoadingProxies(true);
         base.OnConfiguring(optionsBuilder);
 
     }

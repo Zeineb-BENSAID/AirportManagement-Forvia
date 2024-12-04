@@ -2,15 +2,19 @@
 using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AM.Web.Controllers;
 
 public class FlightController : Controller
 {
     IServiceFlight serviceFlight;
-    public FlightController(IServiceFlight serviceFlight)
+    IServicePlane servicePlane;
+    public FlightController(IServiceFlight serviceFlight, IServicePlane servicePlane)
     {
-        this.serviceFlight=serviceFlight;
+        this.serviceFlight = serviceFlight;
+        this.servicePlane = servicePlane;
+
     }
 
     // GET: FlightController
@@ -35,6 +39,9 @@ public class FlightController : Controller
     [HttpGet]
     public ActionResult Create()
     {
+        ViewBag.Planes = new SelectList(servicePlane.GetAll().ToList(),
+                "PlaneId", "Capacity");
+
         return View();
     }
 
