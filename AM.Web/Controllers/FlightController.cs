@@ -14,9 +14,15 @@ public class FlightController : Controller
     }
 
     // GET: FlightController
-    public ActionResult Index()
+    public ActionResult Index(DateTime? dateDepart)
     {
-        return View(serviceFlight.GetAll());
+        if(dateDepart==null)
+            return View(serviceFlight.GetAll());
+        return View(serviceFlight.GetMany(f=>f.FlightDate.Equals(dateDepart)).ToList());
+    }
+    public ActionResult Sort() // appel de service spécifique
+    {
+        return View("Index", serviceFlight.SortFlights());
     }
 
     // GET: FlightController/Details/5

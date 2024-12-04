@@ -9,4 +9,6 @@ using System.Threading.Tasks;
 namespace AM.ApplicationCore.Interfaces;
 public interface IServiceFlight:IService<Flight>
 {
+    //signatures des méthodes avancées
+    public IEnumerable<Flight> SortFlights();
 }

@@ -12,6 +12,13 @@ namespace AM.ApplicationCore.Services
     {
         public ServiceFlight(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
+
         }
+        //implémentations des méthodes avancées
+        public IEnumerable<Flight> SortFlights()
+        {
+            return GetAll().OrderByDescending(f => f.FlightDate);
+        }
+
     }
 }
