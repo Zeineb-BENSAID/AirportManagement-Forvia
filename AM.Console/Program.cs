@@ -6,16 +6,16 @@ using AM.Infrastructure;
 
 Console.WriteLine("Hello, World!");
 
-AMContext AMContext = new AMContext();
+//AMContext AMContext = new AMContext();
 
-IUnitOfWork unitOfWork = new UnitOfWork(AMContext);
+//IUnitOfWork unitOfWork = new UnitOfWork(AMContext);
 
-IServicePlane servicePlane = new ServicePlane(unitOfWork);
+//IServicePlane servicePlane = new ServicePlane(unitOfWork);
 
-servicePlane.Add(new Plane { Capacity = 400, PlaneType = PlaneType.Boing, ManufactureDate = DateTime.Now });
-servicePlane.Commit();  
+//servicePlane.Add(new Plane { Capacity = 400, PlaneType = PlaneType.Boing, ManufactureDate = DateTime.Now });
+//servicePlane.Commit();  
 
-foreach (var plane in servicePlane.GetAll())
-{
-    Console.WriteLine(plane.Capacity);
-}
+//foreach (var plane in servicePlane.GetAll())
+//{
+//    Console.WriteLine(plane.Capacity);
+//}

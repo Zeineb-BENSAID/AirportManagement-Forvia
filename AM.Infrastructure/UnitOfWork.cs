@@ -14,17 +14,17 @@ namespace AM.Infrastructure
         private readonly Type _repositoryType;
         private bool disposedValue;
 
-        public UnitOfWork(AMContext context/*,Type repoType*/)
+        public UnitOfWork(AMContext context,Type repoType)
         {
             _context=context;
-            //_repositoryType=repoType;   
+            _repositoryType=repoType;   
         }
         public IGenericRepository<T> Repository<T>() where T : class
         {
-            return new GenericRepository<T>(_context);
-            //return (IGenericRepository<T>)
-            //    Activator.
-            //    CreateInstance(_repisitoryType.MakeGenericType(typeof(T)),_context);
+            //return new GenericRepository<T>(_context);
+            return (IGenericRepository<T>)
+                Activator.
+                CreateInstance(_repositoryType.MakeGenericType(typeof(T)), _context);
         }
         public int Save()
         {
