@@ -32,7 +32,7 @@ public class FlightController : Controller
     // GET: FlightController/Details/5
     public ActionResult Details(int id)
     {
-        return View();
+        return View(serviceFlight.GetById(id));
     }
 
     // GET: FlightController/Create
@@ -65,16 +65,20 @@ public class FlightController : Controller
     // GET: FlightController/Edit/5
     public ActionResult Edit(int id)
     {
-        return View();
+        ViewBag.myplanes =new SelectList(servicePlane.GetAll(), "PlaneId", "Information");
+        return View(serviceFlight.GetById(id));
     }
 
     // POST: FlightController/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
+    public ActionResult Edit(int id, Flight flight)
     {
         try
         {
+            flight.FlightId = id;
+            serviceFlight.Update(flight);
+            serviceFlight.Commit();
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -86,16 +90,19 @@ public class FlightController : Controller
     // GET: FlightController/Delete/5
     public ActionResult Delete(int id)
     {
-        return View();
+        return View(serviceFlight.GetById(id));
     }
 
     // POST: FlightController/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
+    public ActionResult Delete(int id, Flight flight)
     {
         try
         {
+            flight.FlightId = id;
+            serviceFlight.Delete(flight);
+            serviceFlight.Commit();
             return RedirectToAction(nameof(Index));
         }
         catch

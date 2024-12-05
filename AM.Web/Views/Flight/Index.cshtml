@@ -51,6 +51,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Plane.Capacity)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plane.PlaneType)
+            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -78,13 +82,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AirlineLogo)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plane.Capacity)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Plane.PlaneType)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.FlightId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.FlightId}) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FlightId })
             </td>
         </tr>
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,14 @@ public class Plane
     public DateTime ManufactureDate { get; set; }
     public int PlaneId { get; set; }
     public PlaneType PlaneType { get; set; }
+    [NotMapped]
+    public string Information
+    {
+        get { return "Capacity : "+Capacity.ToString()+", Plane Type : "+PlaneType; }
+    }
+    public string Informations => $"Capacity : {Capacity} , Plane Type :{PlaneType}";
+
+
     //prop de navigation
     public virtual ICollection<Flight> Flights{ get; set; }
 }

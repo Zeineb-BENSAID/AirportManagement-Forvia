@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ public  class Flight
     public DateTime EffectiveArrival { get; set; }
     public int EstimatedDuration { get; set; }
     public string AirlineLogo { get; set; }
+    [Display(Name = "Plane information")]
     public int? PlaneFK { get; set; }
     //prop de navigation
     [ForeignKey("PlaneFK")]
