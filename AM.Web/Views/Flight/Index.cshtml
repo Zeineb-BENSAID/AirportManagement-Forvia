@@ -80,7 +80,8 @@
                 @Html.DisplayFor(modelItem => item.EstimatedDuration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AirlineLogo)
+                @* @Html.DisplayFor(modelItem => item.AirlineLogo) *@
+                <img  src="~/uploads/@item.AirlineLogo" width="50" height="50"/>
             </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Plane.Capacity)

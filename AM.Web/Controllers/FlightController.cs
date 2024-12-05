@@ -24,6 +24,10 @@ public class FlightController : Controller
             return View(serviceFlight.GetAll());
         return View(serviceFlight.GetMany(f=>f.FlightDate.Equals(dateDepart)).ToList());
     }
+    public ActionResult IndexWithPartialView()
+    {
+            return View(serviceFlight.GetAll());
+    }
     public ActionResult Sort() // appel de service spécifique
     {
         return View("Index", serviceFlight.SortFlights());
@@ -48,10 +52,16 @@ public class FlightController : Controller
     // POST: FlightController/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Flight flight)
+    public ActionResult Create(Flight flight,IFormFile AirlineLogo)
     {
         try
         {
+            if (AirlineLogo != null)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", AirlineLogo.FileName); //création du chemin
+                Stream stream = new FileStream(path, FileMode.Create); AirlineLogo.CopyTo(stream); // ajout dans le dossier
+                flight.AirlineLogo = AirlineLogo.FileName;//nom du logo dans la base
+            }
             serviceFlight.Add(flight);
             serviceFlight.Commit();
             return RedirectToAction(nameof(Index));
